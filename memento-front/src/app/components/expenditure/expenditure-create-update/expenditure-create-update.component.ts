@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ExpenditureCategory } from '../../../shared/model/expenditure';
 import { ExpenditureCategoryService } from '../../../store/services/expenditure-category.service';
 import { ExpenditureService } from '../../../store/services/expenditure.service';
@@ -34,7 +34,11 @@ export class ExpenditureCreateUpdateComponent implements OnInit {
     public dialogRef: MatDialogRef<ExpenditureCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {}
   ) {
-    this.categories$ = this.categories.filteredEntities$;
+    this.categories$ = this.categories.filteredEntities$.pipe(
+      map((categories) =>
+        categories.filter((category) => !category.isBanned)
+      )
+    );
   }
 
   ngOnInit(): void {}

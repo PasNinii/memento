@@ -4,4 +4,19 @@ export class ExpenditureFilter {
   category: string = '';
 
   constructor() {}
+
+  resetDate() {
+    this.lastDay = '';
+    this.firstDay = '';
+  }
+
+  resetCategory(): void {
+    this.category = '';
+  }
+
+  resetAll(): void {
+    this.lastDay = '';
+    this.firstDay = '';
+    this.category = '';
+  }
 }

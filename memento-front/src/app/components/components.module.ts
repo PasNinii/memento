@@ -4,7 +4,7 @@ import { ExpenditureComponent } from './expenditure/expenditure.component';
 import { ExpenditureListComponent } from './expenditure/expenditure-list/expenditure-list.component';
 import { ExpenditureDetailComponent } from './expenditure/expenditure-detail/expenditure-detail.component';
 import { ExpenditureCreateUpdateComponent } from './expenditure/expenditure-create-update/expenditure-create-update.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,

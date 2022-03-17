@@ -15,7 +15,10 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Choose Category</mat-label>
-    <mat-select (selectionChange)="onCategoryChange($event)">
+    <mat-select
+      [(ngModel)]="selectedCategory"
+      (selectionChange)="onCategoryChange()"
+    >
       <mat-option
         *ngFor="let category of categories$ | async"
         [value]="category.name"
@@ -29,9 +32,11 @@
   </button>
 </section>
 
-<div *ngFor="let category of categories$ | async" [ngSwitch]="category.name">
+<div *ngFor="let category of categories$ | async">
   <app-expenditure-list
+    *ngIf="category.name !== 'All'"
     [category]="category.name"
-    [expenditureList]="getExpenditureByCategory(category.name)"
+    [expenditures$]="getExpenditureByCategory(category.name)"
+    [isExpenditureEmpty$]="isExpenditureCategoryEmpty(category.name)"
   ></app-expenditure-list>
 </div>

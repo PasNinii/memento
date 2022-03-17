@@ -1,6 +1,8 @@
-<h1>{{ category }}</h1>
-<ul>
-  <li *ngFor="let expenditure of expenditureList | async">
-    {{ expenditure.name }}
-  </li>
-</ul>
+<ng-container *ngIf="(isExpenditureEmpty$ | async) as expenditures">
+  <h1>{{ category }}</h1>
+  <ul *ngIf="expenditures">
+    <li *ngFor="let expenditure of (expenditures$ | async)">
+      {{ expenditure.name }}
+    </li>
+  </ul>
+</ng-container>

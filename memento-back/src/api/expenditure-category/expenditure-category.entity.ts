@@ -9,6 +9,9 @@ export class ExpenditureCategory {
   @Column()
   name: string;
 
-  @OneToMany(() => Expenditure, expediture => expediture.category)
+  @Column()
+  isBanned: boolean;
+
+  @OneToMany(() => Expenditure, (expediture) => expediture.category)
   expenditures: Expenditure[];
 }

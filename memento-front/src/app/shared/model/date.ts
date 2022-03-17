@@ -1,4 +1,5 @@
 export const MONTHS: string[] = [
+  'All',
   'January',
   'February',
   'March',

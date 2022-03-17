@@ -12,5 +12,6 @@ export interface Expenditure {
 export interface ExpenditureCategory {
   id?: string;
   name: string;
+  isBanned: boolean;
   description: string;
 }

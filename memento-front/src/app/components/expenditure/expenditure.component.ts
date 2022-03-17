@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { getMatIconNoHttpProviderError } from '@angular/material/icon';
-import { filter, from, map, Observable, of } from 'rxjs';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { StoreRootModule } from '@ngrx/store';
+import { filter, from, isEmpty, map, Observable, of } from 'rxjs';
 import { MONTHS } from '../../shared/model/date';
 import {
   Expenditure,
@@ -25,6 +27,7 @@ export class ExpenditureComponent implements OnInit {
   expenditures$: Observable<Expenditure[]>;
   months = MONTHS;
   filters = new ExpenditureFilter();
+  selectedCategory: string = 'All';
 
   constructor(
     public dialog: MatDialog,
@@ -48,11 +51,17 @@ export class ExpenditureComponent implements OnInit {
     });
   }
 
-  onMonthChange(event: any): void {
+  onMonthChange(event: MatSelectChange): void {
+    if (event.value === 'All') {
+      this.filters.resetDate();
+      this.expenditures.setFilter({ ...this.filters });
+      return;
+    }
+
     const filter = this.months.findIndex((month) => month === event.value);
 
     const date = new Date();
-    date.setMonth(filter);
+    date.setMonth(filter - 1);
 
     const firstDay = new Date(
       date.getFullYear(),
@@ -72,19 +81,30 @@ export class ExpenditureComponent implements OnInit {
     this.expenditures.setFilter({ ...this.filters });
   }
 
-  onCategoryChange(event: any): void {
-    this.filters.category = event.value;
+  onCategoryChange(): void {
+    if (this.selectedCategory === 'All') {
+      this.filters.resetCategory();
+      this.expenditures.setFilter({ ...this.filters });
+      return;
+    }
 
+    this.filters.category = this.selectedCategory;
     this.expenditures.setFilter({ ...this.filters });
+  }
+
+  isExpenditureCategoryEmpty(category: string): Observable<boolean> {
+    return this.getExpenditureByCategory(category).pipe(
+      map((expditureList) => expditureList.length > 0)
+    );
   }
 
   getExpenditureByCategory(category: string): Observable<Expenditure[]> {
     return this.expenditures$.pipe(
-      map((expenditureList) =>
-        expenditureList.filter(
+      map((expenditureList) => {
+        return expenditureList.filter(
           (expenditure) => expenditure.category.name === category
-        )
-      )
+        );
+      })
     );
   }
 }

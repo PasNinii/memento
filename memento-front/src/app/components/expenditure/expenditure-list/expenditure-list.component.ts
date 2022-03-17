@@ -11,5 +11,6 @@ import {
 })
 export class ExpenditureListComponent {
   @Input() category!: string;
-  @Input() expenditureList!: Observable<Expenditure[]>;
+  @Input() expenditures$!: Observable<Expenditure[]>;
+  @Input() isExpenditureEmpty$!: Observable<boolean>;
 }

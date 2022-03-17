@@ -1,8 +1,12 @@
-<ng-container *ngIf="(isExpenditureEmpty$ | async) as expenditures">
-  <h1>{{ category }}</h1>
-  <ul *ngIf="expenditures">
-    <li *ngFor="let expenditure of (expenditures$ | async)">
-      {{ expenditure.name }}
-    </li>
-  </ul>
+<ng-container
+  *ngIf="isExpenditureEmpty$ | async as expenditures"
+>
+  <h1 fxLayoutAlign="center center" class="container">{{ category }}</h1>
+  <div *ngIf="expenditures" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngFor="let expenditure of expenditures$ | async">
+      <app-expenditure-detail
+        [expenditure]="expenditure"
+      ></app-expenditure-detail>
+    </div>
+  </div>
 </ng-container>

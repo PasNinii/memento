@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { getMatIconNoHttpProviderError } from '@angular/material/icon';
-import { MatSelect, MatSelectChange } from '@angular/material/select';
-import { StoreRootModule } from '@ngrx/store';
-import { filter, from, isEmpty, map, Observable, of } from 'rxjs';
+import { MatSelectChange } from '@angular/material/select';
+import { map, Observable } from 'rxjs';
 import { MONTHS } from '../../shared/model/date';
 import {
   Expenditure,
@@ -47,7 +45,7 @@ export class ExpenditureComponent implements OnInit {
     MatDialogConfig;
     this.dialog.open(ExpenditureCreateUpdateComponent, {
       width: '25%',
-      data: { mode: Mode.CREATE },
+      data: Mode.CREATE,
     });
   }
 

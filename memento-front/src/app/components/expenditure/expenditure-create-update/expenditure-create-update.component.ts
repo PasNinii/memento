@@ -32,13 +32,15 @@ export class ExpenditureCreateUpdateComponent implements OnInit {
     private readonly expenditures: ExpenditureService,
     private readonly categories: ExpenditureCategoryService,
     public dialogRef: MatDialogRef<ExpenditureCreateUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {}
+    @Inject(MAT_DIALOG_DATA) public data: Mode
   ) {
     this.categories$ = this.categories.filteredEntities$.pipe(
       map((categories) =>
         categories.filter((category) => !category.isBanned)
       )
     );
+
+    this.mode = data;
   }
 
   ngOnInit(): void {}

@@ -2,6 +2,9 @@
   <h1 mat-dialog-title fxLayoutAlign="center center">
     💰 Adding a new Expenditure 💰
   </h1>
+  <h2 mat-dialog-title fxLayoutAlign="center center">
+    ({{ mode | titlecase }})
+  </h2>
 
   <form
     [formGroup]="expenditureForm"

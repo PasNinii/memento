@@ -16,7 +16,7 @@ export enum Mode {
   templateUrl: './expenditure-create-update.component.html',
   styleUrls: ['./expenditure-create-update.component.scss'],
 })
-export class ExpenditureCreateUpdateComponent implements OnInit {
+export class ExpenditureCreateUpdateComponent {
   mode: string = Mode.CREATE;
   categories$: Observable<ExpenditureCategory[]>;
 
@@ -42,8 +42,6 @@ export class ExpenditureCreateUpdateComponent implements OnInit {
 
     this.mode = data;
   }
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.expenditureForm.valid) {

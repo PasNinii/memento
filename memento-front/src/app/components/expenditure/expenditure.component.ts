@@ -24,13 +24,13 @@ export class ExpenditureComponent implements OnInit {
   categories$: Observable<ExpenditureCategory[]>;
   expenditures$: Observable<Expenditure[]>;
   months = MONTHS;
-  filters = new ExpenditureFilter();
   selectedCategory: string = 'All';
 
   constructor(
     public dialog: MatDialog,
     private readonly expenditures: ExpenditureService,
-    private readonly categories: ExpenditureCategoryService
+    private readonly categories: ExpenditureCategoryService,
+    private readonly filters: ExpenditureFilter
   ) {
     this.categories$ = this.categories.filteredEntities$;
     this.expenditures$ = this.expenditures.filteredEntities$;

@@ -8,9 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { ErrorComponent } from './errors/error.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AnchorComponent } from './shell/anchor.component';
 
 @NgModule({
-  declarations: [ShellComponent],
+  declarations: [AnchorComponent, ErrorComponent, ShellComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatMenuModule,
     MatIconModule,
+    FlexLayoutModule,
   ],
   exports: [ShellComponent],
 })

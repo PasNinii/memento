@@ -9,8 +9,11 @@ import { ExpenditureCategory } from '../expenditure-category/expenditure-categor
 
 @Entity('expenditure')
 export class Expenditure {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
+
+  @Column({ name: 'user_id' })
+  userId: string;
 
   @Column()
   name: string;

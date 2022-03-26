@@ -8,10 +8,27 @@
     [opened]="false"
   >
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/expenditures" (click)="drawer.close()">Expenditures 🈳</a>
-      <a mat-list-item routerLink="/game" (click)="drawer.close()">Game 🎮</a>
+    <mat-divider></mat-divider>
+    <mat-nav-list *ngIf="activeRoute$ | async as routes">
+      <ng-template #recursive let-routes>
+        <ng-container *ngFor="let route of routes">
+          <a
+            mat-list-item
+            [routerLink]="route?.shellPath ? route.shellPath : route.path"
+            *ngIf="route.sidenav"
+            >{{ route.name }}</a
+          >
+          <section *ngIf="route?.children?.length > 0">
+            <ng-container
+              *ngTemplateOutlet="
+                recursive;
+                context: { $implicit: route?.children }
+              "
+            ></ng-container>
+          </section>
+        </ng-container>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="recursive; context:{ $implicit: routes }"></ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,7 +38,6 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -29,8 +45,11 @@
 
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/expenditures">Expenditures 🈳</a>
-        <a mat-button routerLink="/game">Game 🎮</a>
+        <ng-container *ngFor="let route of appRoutes">
+          <a mat-button [routerLink]="route.path" *ngIf="route.toolbar">{{
+            route.name
+          }}</a>
+        </ng-container>
 
         <a
           mat-button
@@ -61,7 +80,7 @@
       <mat-menu #menu="matMenu">
         <a mat-menu-item href="https://github.com/PasNinii/cowboy-front">
           <i>💬</i>
-          <span>Chat on Slack (front)</span>
+          <span>Code on Github (front)</span>
         </a>
         <a mat-menu-item href="https://github.com/PasNinii/cowboy-back">
           <i>💾</i>

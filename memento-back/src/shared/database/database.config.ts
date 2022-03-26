@@ -28,7 +28,7 @@ export default class TypeOrmConfigService implements TypeOrmOptionsFactory {
       url: this.configService.get('DATABASE_URL'),
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      logging: false,
     };
   }
 

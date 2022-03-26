@@ -19,6 +19,7 @@ import {
 } from './store/entity-metadata';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { LearnModule } from './learn/learn.module';
 import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserAnimationsModule,
     SharedModule,
     ComponentsModule,
+    LearnModule,
     FlexLayoutModule,
     HttpClientModule,
     AuthModule.forRoot({

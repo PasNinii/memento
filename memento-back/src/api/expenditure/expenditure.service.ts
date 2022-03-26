@@ -9,15 +9,20 @@ import { ExpenditureRepository } from './expenditure.repository';
 export class ExpenditureService {
   constructor(private readonly expenditureRepository: ExpenditureRepository) {}
 
-  create(createExpenditureDto: CreateExpenditureDto) {
-    return this.expenditureRepository.save(createExpenditureDto);
+  create(userId: string, createExpenditureDto: CreateExpenditureDto) {
+    return this.expenditureRepository.save({
+      ...createExpenditureDto,
+      userId,
+    });
   }
 
-  async findAll(): Promise<Expenditure[]> {
+  async findAll(userId: string): Promise<Expenditure[]> {
     return this.expenditureRepository
       .createQueryBuilder('expenditure')
       .leftJoinAndSelect('expenditure.category', 'expenditure_category')
-      .orderBy('expenditure_category.name', 'ASC')
+      .where({ userId })
+      .orderBy('expenditure_category.create_date', 'ASC')
+      .orderBy('expenditure_category.name', 'DESC')
       .getMany();
   }
 

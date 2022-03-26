@@ -5,8 +5,6 @@ import { AuthModule } from './api/auth/auth.module';
 import { ExpenditureModule } from './api/expenditure/expenditure.module';
 import { ExpenditureCategoryModule } from './api/expenditure-category/expenditure-category.module';
 import TypeOrmConfigService from './shared/database/database.config';
-import { TestController } from './test.controller';
-import { TestService } from './test.service';
 
 @Module({
   imports: [
@@ -19,7 +17,5 @@ import { TestService } from './test.service';
     }),
     ExpenditureCategoryModule,
   ],
-  controllers: [TestController],
-  providers: [TestService],
 })
 export class AppModule {}

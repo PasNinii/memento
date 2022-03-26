@@ -1,15 +1,42 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ExpenditureComponent } from './components/expenditure/expenditure.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ErrorComponent } from './shared/errors/error.component';
+import { CustomRoute } from './shared/model/interface';
 
-const routes: Routes = [
-  { path: '', component: HomePageComponent },
+export const routes: CustomRoute[] = [
+  {
+    path: '',
+    component: HomePageComponent,
+    name: 'Home',
+    toolbar: true,
+    sidenav: false,
+  },
   {
     path: 'expenditures',
     component: ExpenditureComponent,
     canActivate: [AuthGuard],
+    name: 'Expenditures 🈳',
+    toolbar: false,
+    sidenav: true,
+  },
+  {
+    path: 'learn',
+    loadChildren: () =>
+      import('./learn/learn.module').then((m) => m.LearnModule),
+    canActivate: [AuthGuard],
+    name: 'Learn 🧠',
+    toolbar: true,
+    sidenav: false,
+  },
+  {
+    path: '**',
+    component: ErrorComponent,
+    toolbar: false,
+    sidenav: false,
+    name: '',
   },
 ];
 

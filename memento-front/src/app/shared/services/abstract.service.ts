@@ -63,6 +63,11 @@ export class Service<T extends Entity> {
     }
   }
 
+  /**
+   * Comment to be removed to test master rules
+   * @param reload
+   * @param firstPage
+   */
   public loadPaginated(reload: boolean = false, firstPage: number = 1): void {
     if (reload || !(this.entities.length > 0)) {
       this.getWithParams(firstPage)

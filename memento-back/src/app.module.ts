@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './api/auth/auth.module';
 import { ExpenditureModule } from './api/expenditure/expenditure.module';
 import { ExpenditureCategoryModule } from './api/expenditure-category/expenditure-category.module';
+import { LearnModule } from './learn/learn.module';
 import TypeOrmConfigService from './shared/database/database.config';
 
 @Module({
@@ -16,6 +17,7 @@ import TypeOrmConfigService from './shared/database/database.config';
       inject: [TypeOrmConfigService],
     }),
     ExpenditureCategoryModule,
+    LearnModule,
   ],
 })
 export class AppModule {}

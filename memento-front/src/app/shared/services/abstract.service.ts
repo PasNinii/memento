@@ -101,27 +101,32 @@ export class Service<T extends Entity> {
     return this.http.get<Response<T>>(`${this.url}?page=${page}`);
   }
 
-  private dynamicFilter(k: keyof T, t: T, v: any, operand: string): boolean {
-    const value = t[k];
+  private dynamicFilter(
+    key: keyof T,
+    entity: T,
+    valueFromFilter: any,
+    operand: string
+  ): boolean {
+    const value = entity[key];
 
     switch (operand) {
       case '>':
-        return value > v;
+        return value > valueFromFilter;
 
       case '>=':
-        return value >= v;
+        return value >= valueFromFilter;
 
       case '<':
-        return value < v;
+        return value < valueFromFilter;
 
       case '<=':
-        return value <= v;
+        return value <= valueFromFilter;
 
       case '===':
-        return value === v;
+        return value === valueFromFilter;
 
       default:
-        return value === v;
+        return value === valueFromFilter;
     }
   }
 }

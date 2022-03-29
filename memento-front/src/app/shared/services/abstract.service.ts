@@ -63,9 +63,9 @@ export class Service<T extends Entity> {
     }
   }
 
-  public loadPaginated(reload: boolean = false): void {
+  public loadPaginated(reload: boolean = false, firstPage: number = 1): void {
     if (reload || !(this.entities.length > 0)) {
-      this.getWithParams()
+      this.getWithParams(firstPage)
         .pipe(
           expand((response) => {
             return response.next ? this.getFromUrl(response.next) : of();

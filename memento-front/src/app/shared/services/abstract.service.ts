@@ -10,13 +10,13 @@ import {
   of,
   scan,
 } from 'rxjs';
-import { Entity, Filter, Response } from '../model/interface';
+import { Entity, CommonObject, Response } from '../model/interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Service<T extends Entity> {
-  private readonly filters$ = new BehaviorSubject<Filter>({});
+  private readonly filters$ = new BehaviorSubject<CommonObject>({});
   private readonly _entities$ = new BehaviorSubject<T[]>([]);
   private readonly id$ = new BehaviorSubject<string>('');
 

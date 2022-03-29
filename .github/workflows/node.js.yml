@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: memento-front
+
     strategy:
       matrix:
         node-version: [10.x]
@@ -19,8 +23,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      working-directory: memento-front
       - run: npm run test:prod
-      working-directory: memento-front
       - run: npm run lint
-      working-directory: memento-front

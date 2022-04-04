@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
 import { routes as appRoutes } from '../../app-routing.module';
 import { routes as learnRoutes } from '../../learn/learn-routing.module';
+import { routes as dynamicRoutes } from '../../dynamic/dynamic-routing.module';
 import { CustomRoute } from '../model/interface';
 import { NavigationEnd, Router } from '@angular/router';
 
@@ -35,7 +36,11 @@ export class ShellComponent {
       filter((events) => events instanceof NavigationEnd),
       map((events) => {
         const e = events as NavigationEnd;
-        return e.url.includes('learn') ? learnRoutes : appRoutes;
+
+        if (e.url.includes('learn')) return learnRoutes;
+        if (e.url.includes('dynamic')) return dynamicRoutes;
+
+        return appRoutes;
       })
     );
   }

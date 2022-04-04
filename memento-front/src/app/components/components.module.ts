@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ExpenditureComponent } from './expenditure/expenditure.component';
 import { ExpenditureListComponent } from './expenditure/expenditure-list/expenditure-list.component';
 import { ExpenditureDetailComponent } from './expenditure/expenditure-detail/expenditure-detail.component';
@@ -12,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { BasicModule } from '../shared/module/basic.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     ExpenditureCreateUpdateComponent,
   ],
   imports: [
-    CommonModule,
+    BasicModule,
     FormsModule,
     MatButtonModule,
     MatDialogModule,
@@ -29,7 +29,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    FlexLayoutModule,
     ReactiveFormsModule,
   ],
 })

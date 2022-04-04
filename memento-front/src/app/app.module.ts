@@ -21,6 +21,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { LearnModule } from './learn/learn.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { DynamicModule } from './dynamic/dynamic.module';
+import { BasicModule } from './shared/module/basic.module';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent],
@@ -31,7 +33,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     SharedModule,
     ComponentsModule,
     LearnModule,
-    FlexLayoutModule,
+    DynamicModule,
+    BasicModule,
+
     HttpClientModule,
     AuthModule.forRoot({
       ...env.auth,

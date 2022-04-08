@@ -18,10 +18,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run angular checks (tests, lint, ...)    
+      
+      - name: [angular] env setup    
         working-directory: memento-front
-        run: |
-          cp src/environments/auth_config.json.ini src/environments/auth_config.json 
-          npm ci
-          npm run test:prod
-          ng lint
+        run: cp src/environments/auth_config.json.ini src/environments/auth_config.json 
+
+      - name: [angular] ci setup    
+        working-directory: memento-front
+        run: npm ci 
+
+      - name: [angular] unit test prod    
+        working-directory: memento-front
+        run: npm run test:prod 
+
+      - name: [angular] lint    
+        working-directory: memento-front
+        run: npm run lint

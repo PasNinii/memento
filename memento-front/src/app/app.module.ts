@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 
 import { ComponentsModule } from './components/components.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 
@@ -23,6 +22,9 @@ import { LearnModule } from './learn/learn.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { BasicModule } from './shared/module/basic.module';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent],
@@ -35,7 +37,9 @@ import { BasicModule } from './shared/module/basic.module';
     LearnModule,
     DynamicModule,
     BasicModule,
-
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     AuthModule.forRoot({
       ...env.auth,

@@ -19,9 +19,9 @@ import { BasicModule } from '../shared/module/basic.module';
 @NgModule({
   imports: [
     LearnRoutingModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
     BasicModule,
   ],

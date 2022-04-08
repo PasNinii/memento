@@ -5,7 +5,7 @@ import { Movie } from '../../../shared/model/interface';
 import { MovieService } from '../../../shared/services/movie.service';
 
 @Component({
-  selector: 'movie-detail',
+  selector: 'app-movie-detail',
   template: `
     <section *ngIf="movie$ | async as movie; else loading">
       {{ movie.id }} {{ movie.name }}

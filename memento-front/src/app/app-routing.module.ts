@@ -32,6 +32,15 @@ export const routes: CustomRoute[] = [
     sidenav: false,
   },
   {
+    path: 'dynamic',
+    loadChildren: () =>
+      import('./dynamic/dynamic.module').then((m) => m.DynamicModule),
+    canActivate: [AuthGuard],
+    name: 'Dynamic 🚀',
+    toolbar: true,
+    sidenav: false,
+  },
+  {
     path: '**',
     component: ErrorComponent,
     toolbar: false,

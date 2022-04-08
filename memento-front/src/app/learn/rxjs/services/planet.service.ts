@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Planet, Response } from '../../../shared/model/interface';
+import { Planet } from '../../../shared/model/interface';
 import { Service } from '../../../shared/services/abstract.service';
 
 @Injectable({

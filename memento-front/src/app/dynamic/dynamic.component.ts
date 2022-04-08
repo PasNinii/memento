@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-learn-component',
   template: `
     <section fxLayout="row" fxLayoutAlign="center center">
-      <h1>Welcome to learn</h1>
+      <h1>Welcome to Dynamic</h1>
     </section>
   `,
 })
-export class LearnComponent {}
+export class DynamicComponent {}

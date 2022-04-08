@@ -89,6 +89,10 @@ export class Service<T extends Entity> {
     this.id$.next(id);
   }
 
+  public setFilter(filter: CommonObject) {
+    this.filters$.next(filter);
+  }
+
   public get entities() {
     return this._entities$.getValue();
   }
@@ -124,6 +128,11 @@ export class Service<T extends Entity> {
 
       case '===':
         return value === valueFromFilter;
+
+      case 'includes':
+        if (typeof value === 'string' && valueFromFilter !== '')
+          return value.includes(valueFromFilter);
+        return true;
 
       default:
         return value === valueFromFilter;

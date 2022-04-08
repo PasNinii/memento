@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: cp src/environments/auth_config.json.ini src/environments/auth_config.json 
       - run: npm ci
       - run: npm run test:prod
       - run: npm run lint

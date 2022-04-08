@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LearnRoutingModule } from './learn-routing.module';
 import { LearnComponent } from './learn.component';
 import { MovieListComponent } from './rxjs/operators/movie-list.component';
-import { RxJSCompoent } from './rxjs/rxjs.component';
+import { RxJSComponent } from './rxjs/rxjs.component';
 import { SubjectsComponent } from './rxjs/subjects/subjects.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -27,7 +27,7 @@ import { BasicModule } from '../shared/module/basic.module';
   ],
   declarations: [
     LearnComponent,
-    RxJSCompoent,
+    RxJSComponent,
     MovieDetailComponent,
     SubjectsComponent,
     MovieListComponent,

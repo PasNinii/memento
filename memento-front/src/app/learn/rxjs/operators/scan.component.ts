@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Planet } from '../../../shared/model/interface';
 import { PlanetService } from '../services/planet.service';
@@ -26,7 +26,7 @@ import { PlanetService } from '../services/planet.service';
     </section>
   `,
 })
-export class ScanComponent implements OnInit {
+export class ScanComponent {
   planets$: Observable<Planet[]>;
 
   public filters = {
@@ -42,8 +42,6 @@ export class ScanComponent implements OnInit {
     this.planets.loadPaginated();
     this.planets$ = this.planets.filteredEntities$;
   }
-
-  ngOnInit(): void {}
 
   onChange(): void {
     this.planets.setFilter(this.filters);

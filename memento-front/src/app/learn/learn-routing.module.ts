@@ -6,7 +6,7 @@ import { LearnComponent } from './learn.component';
 import { MovieDetailComponent } from './rxjs/operators/movie-detail.component';
 import { MovieListComponent } from './rxjs/operators/movie-list.component';
 import { ScanComponent } from './rxjs/operators/scan.component';
-import { RxJSCompoent } from './rxjs/rxjs.component';
+import { RxJSComponent } from './rxjs/rxjs.component';
 import { SubjectsComponent } from './rxjs/subjects/subjects.component';
 
 export const routes: CustomRoute[] = [
@@ -20,7 +20,7 @@ export const routes: CustomRoute[] = [
   },
   {
     path: 'rxjs',
-    component: RxJSCompoent,
+    component: RxJSComponent,
     name: 'RxJS',
     toolbar: false,
     sidenav: false,

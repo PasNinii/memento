@@ -44,7 +44,7 @@
       <span class="logo" routerLink="/">🚀🚀 Memento</span>
 
       <span class="fill-space"></span>
-      <div *ngIf="!(isHandset$ | async)">
+      <div *ngIf="(isHandset$ | async) === false || (isHandset$ | async) === undefined || (isHandset$ | async) === null">
         <ng-container *ngFor="let route of appRoutes">
           <a mat-button [routerLink]="route.path" *ngIf="route.toolbar">{{
             route.name
@@ -54,7 +54,7 @@
         <a
           mat-button
           (click)="auth.loginWithRedirect()"
-          *ngIf="!(auth.isAuthenticated$ | async)"
+          *ngIf="(auth.isAuthenticated$ | async) === false || (auth.isAuthenticated$ | async) === undefined || (auth.isAuthenticated$ | async) === null"
           >🔑 Login</a
         >
         <a

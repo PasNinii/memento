@@ -1,4 +1,6 @@
 import { Route } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SimpleTableComponent } from '../../dynamic/components/table/simple-table/simple-table.component';
 
 /**
  * Generic Interface
@@ -22,24 +24,44 @@ export class CommonObject {
   [key: string | number | symbol]: Value;
 }
 
-export interface Entity {
-  id: string;
-}
-
 export interface Value {
   value: any;
   operand: string;
 }
 
 /**
+ *
+ */
+export const enum ServiceEnum {
+  MOVIE = 'MOVIE',
+  SERIE = 'SERIE',
+}
+
+export interface IService<T extends Entity> {
+  entities$: Observable<T[]>;
+  filteredEntities$: Observable<T[]>;
+  selectedEntity$: Observable<T | undefined>;
+
+  load(reload?: boolean, path?: string): void;
+  loadPaginated(reload: boolean, firstPage: number): void;
+  setId(id: string, load: boolean): void;
+  setFilter(filter: CommonObject): void;
+  get entities(): T[];
+}
+
+/**
  * Entity Interface
  */
-export interface Movie {
+export interface Entity {
+  id: string;
+}
+
+export interface Movie extends Entity {
   id: string;
   name: string;
 }
 
-export interface Planet {
+export interface Planet extends Entity {
   id: string;
   name: string;
   rotation_period: string;
@@ -47,3 +69,40 @@ export interface Planet {
 
 export type Movies = Movie[];
 export type Planets = Planet[];
+
+/**
+ * Config
+ */
+export interface Config {
+  components: TableComponent[];
+}
+
+export const ComponentEnum = {
+  SIMPLE_TABLE: SimpleTableComponent,
+};
+
+export interface TableComponent {
+  type: any;
+  service: ServiceEnum;
+  columns: string[];
+}
+
+export const MockConfig: Config = {
+  components: [
+    {
+      type: ComponentEnum.SIMPLE_TABLE,
+      service: ServiceEnum.MOVIE,
+      columns: ['name'],
+    },
+    {
+      type: ComponentEnum.SIMPLE_TABLE,
+      service: ServiceEnum.MOVIE,
+      columns: ['name'],
+    },
+    {
+      type: ComponentEnum.SIMPLE_TABLE,
+      service: ServiceEnum.MOVIE,
+      columns: ['name'],
+    },
+  ],
+};

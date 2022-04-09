@@ -28,7 +28,9 @@
           </section>
         </ng-container>
       </ng-template>
-      <ng-container *ngTemplateOutlet="recursive; context:{ $implicit: routes }"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="recursive; context: { $implicit: routes }"
+      ></ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -44,7 +46,13 @@
       <span class="logo" routerLink="/">🚀🚀 Memento</span>
 
       <span class="fill-space"></span>
-      <div *ngIf="(isHandset$ | async) === false || (isHandset$ | async) === undefined || (isHandset$ | async) === null">
+      <div
+        *ngIf="
+          (isHandset$ | async) === false ||
+          (isHandset$ | async) === undefined ||
+          (isHandset$ | async) === null
+        "
+      >
         <ng-container *ngFor="let route of appRoutes">
           <a mat-button [routerLink]="route.path" *ngIf="route.toolbar">{{
             route.name
@@ -54,7 +62,11 @@
         <a
           mat-button
           (click)="auth.loginWithRedirect()"
-          *ngIf="(auth.isAuthenticated$ | async) === false || (auth.isAuthenticated$ | async) === undefined || (auth.isAuthenticated$ | async) === null"
+          *ngIf="
+            (auth.isAuthenticated$ | async) === false ||
+            (auth.isAuthenticated$ | async) === undefined ||
+            (auth.isAuthenticated$ | async) === null
+          "
           >🔑 Login</a
         >
         <a
@@ -64,7 +76,7 @@
         >
           <img
             class="avatar"
-            [src]="user.picture || 'assets/default-user.svg'"
+            [src]="user?.picture || 'assets/default-user.svg'"
           />
         </a>
       </div>
@@ -89,6 +101,6 @@
       </mat-menu>
     </mat-toolbar>
 
-    <ng-content></ng-content>
+    <ng-content> </ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

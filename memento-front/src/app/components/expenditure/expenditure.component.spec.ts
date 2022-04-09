@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockProvider } from 'ng-mocks';
 import { of } from 'rxjs';
 import { ExpenditureCategoryService } from '../../store/services/expenditure-category.service';
@@ -17,7 +20,14 @@ describe('ExpenditureComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule, MatDialogModule],
+      imports: [
+        BrowserAnimationsModule,
+        CommonModule,
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+      ],
       declarations: [ExpenditureComponent],
       providers: [
         FormBuilder,

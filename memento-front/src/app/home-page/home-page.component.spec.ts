@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HomePageComponent } from './home-page.component';
@@ -18,6 +20,7 @@ describe('HomePageComponent', () => {
         BrowserAnimationsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatIconModule,
         MatDividerModule,
       ],
       declarations: [HomePageComponent],

@@ -3,8 +3,7 @@ import { Expenditure } from '../../../shared/model/expenditure';
 
 @Component({
   selector: 'app-expenditure-detail',
-  templateUrl: './expenditure-detail.component.html',
-  styleUrls: ['./expenditure-detail.component.scss'],
+  template: `{{ expenditure.name }}`
 })
 export class ExpenditureDetailComponent {
   @Input() expenditure!: Expenditure;

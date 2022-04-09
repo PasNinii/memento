@@ -4,22 +4,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ExpenditureFilter {
-  lastDay: string = '';
-  firstDay: string = '';
-  category: string = '';
+  public lastDay: string = '';
+  public firstDay: string = '';
+  public category: string = '';
 
   constructor() {}
 
-  resetDate() {
+  public resetDate() {
     this.lastDay = '';
     this.firstDay = '';
   }
 
-  resetCategory(): void {
+  public resetCategory(): void {
     this.category = '';
   }
 
-  resetAll(): void {
+  public resetAll(): void {
     this.lastDay = '';
     this.firstDay = '';
     this.category = '';

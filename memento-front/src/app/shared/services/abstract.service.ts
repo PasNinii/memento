@@ -10,15 +10,16 @@ import {
   of,
   scan,
 } from 'rxjs';
-import { Entity, CommonObject, Response } from '../model/interface';
+import { Entity, CommonObject, Response, IService } from '../model/interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Service<T extends Entity> {
-  private readonly filters$ = new BehaviorSubject<CommonObject>({});
+export class Service<T extends Entity> implements IService<T> {
+  private readonly _filters$ = new BehaviorSubject<CommonObject>({});
   private readonly _entities$ = new BehaviorSubject<T[]>([]);
-  private readonly id$ = new BehaviorSubject<string>('');
+  private readonly _id$ = new BehaviorSubject<string>('');
+  private _isLoading: boolean = false;
 
   protected url: string = '';
 
@@ -29,7 +30,7 @@ export class Service<T extends Entity> {
   constructor(protected readonly http: HttpClient) {
     this.filteredEntities$ = combineLatest([
       this.entities$,
-      this.filters$,
+      this._filters$,
     ]).pipe(
       map(([values, filters]) =>
         values.filter((value) =>
@@ -48,7 +49,7 @@ export class Service<T extends Entity> {
       )
     );
 
-    this.selectedEntity$ = combineLatest([this.entities$, this.id$]).pipe(
+    this.selectedEntity$ = combineLatest([this.entities$, this._id$]).pipe(
       map(([entities, id]) => {
         return entities.find((entity) => entity.id === id);
       })
@@ -56,10 +57,15 @@ export class Service<T extends Entity> {
   }
 
   public load(reload: boolean = false, path: string = ''): void {
-    if (reload || !(this.entities.length > 0)) {
-      this.http
-        .get<T[]>(`${this.url}${path}`)
-        .subscribe((values) => this._entities$.next(values));
+    console.log(this._isLoading);
+
+    if (reload || (!(this.entities.length > 0) && !this._isLoading)) {
+      this._isLoading = true;
+
+      this.http.get<T[]>(`${this.url}${path}`).subscribe((values) => {
+        this._entities$.next(values);
+        this._isLoading = false;
+      });
     }
   }
 
@@ -86,14 +92,14 @@ export class Service<T extends Entity> {
       return;
     }
 
-    this.id$.next(id);
+    this._id$.next(id);
   }
 
   public setFilter(filter: CommonObject) {
-    this.filters$.next(filter);
+    this._filters$.next(filter);
   }
 
-  public get entities() {
+  public get entities(): T[] {
     return this._entities$.getValue();
   }
 

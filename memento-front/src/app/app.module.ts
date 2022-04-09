@@ -25,6 +25,7 @@ import { BasicModule } from './shared/module/basic.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent],
@@ -36,8 +37,11 @@ import { MatInputModule } from '@angular/material/input';
     ComponentsModule,
     LearnModule,
     DynamicModule,
+    FormsModule,
+    MatInputModule,
     BasicModule,
     MatDividerModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,

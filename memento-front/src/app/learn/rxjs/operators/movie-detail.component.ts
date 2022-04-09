@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Movie } from '../../../shared/model/interface';
 import { MovieService } from '../../../shared/services/movie.service';
 

@@ -10,10 +10,9 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorComponent } from './errors/error.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AnchorComponent } from './shell/anchor.component';
 
 @NgModule({
-  declarations: [AnchorComponent, ErrorComponent, ShellComponent],
+  declarations: [ErrorComponent, ShellComponent],
   imports: [
     CommonModule,
     RouterModule,

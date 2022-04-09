@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
@@ -35,9 +35,7 @@ export class ExpenditureCreateUpdateComponent {
     @Inject(MAT_DIALOG_DATA) public data: Mode
   ) {
     this.categories$ = this.categories.filteredEntities$.pipe(
-      map((categories) =>
-        categories.filter((category) => !category.isBanned)
-      )
+      map((categories) => categories.filter((category) => !category.isBanned))
     );
 
     this.mode = data;

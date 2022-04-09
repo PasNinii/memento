@@ -12,7 +12,9 @@ import { ScanComponent } from './rxjs/operators/scan.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { BasicModule } from '../shared/module/basic.module';
+import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { BasicModule } from '../shared/module/basic.module';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    BasicModule,
+    CommonModule,
+    FlexLayoutModule,
+    FormsModule,
   ],
   declarations: [
     LearnComponent,

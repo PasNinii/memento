@@ -1,7 +1,6 @@
-import { Component, ComponentRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomComponentDirective } from '../shared/directives/custom-component.directive';
 import { Config, MockConfig } from '../shared/model/interface';
-import { ServiceFactory } from '../shared/services/service.enum';
 
 @Component({
   template: `

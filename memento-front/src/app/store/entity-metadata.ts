@@ -4,7 +4,7 @@ import {
   DefaultDataServiceConfig,
 } from '@ngrx/data';
 import { environment as env } from '../../environments/environment';
-import { Expenditure, ExpenditureCategory } from '../shared/model/expenditure';
+import { Expenditure } from '../shared/model/expenditure';
 import { ExpenditureFilter } from '../shared/model/expenditure-filter';
 
 export function expenditureFilters(

@@ -35,6 +35,8 @@ export interface Value {
 export const enum ServiceEnum {
   MOVIE = 'MOVIE',
   SERIE = 'SERIE',
+  EXPENDITURE = 'EXPENDITURE',
+  EXPENDITURE_CATEGORIE = 'EXPENDITURE_CATEGORIE',
 }
 
 export interface IService<T extends Entity> {
@@ -78,7 +80,10 @@ export interface Config {
 }
 
 export const ComponentEnum = {
-  SIMPLE_TABLE: SimpleTableComponent,
+  SIMPLE_TABLE: {
+    name: 'SIMPLE_TABLE',
+    type: SimpleTableComponent,
+  },
 };
 
 export interface TableComponent {
@@ -90,17 +95,12 @@ export interface TableComponent {
 export const MockConfig: Config = {
   components: [
     {
-      type: ComponentEnum.SIMPLE_TABLE,
-      service: ServiceEnum.MOVIE,
-      columns: ['name'],
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.EXPENDITURE,
+      columns: ['name', 'price', 'createDate'],
     },
     {
-      type: ComponentEnum.SIMPLE_TABLE,
-      service: ServiceEnum.MOVIE,
-      columns: ['name'],
-    },
-    {
-      type: ComponentEnum.SIMPLE_TABLE,
+      type: 'SIMPLE_TABLE',
       service: ServiceEnum.MOVIE,
       columns: ['name'],
     },

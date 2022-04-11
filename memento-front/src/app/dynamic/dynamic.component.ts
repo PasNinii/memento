@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomComponentDirective } from '../shared/directives/custom-component.directive';
-import { Config, MockConfig } from '../shared/model/interface';
+import { ComponentEnum, Config, MockConfig } from '../shared/model/interface';
 
 @Component({
   template: `
@@ -22,10 +22,20 @@ export class DynamicComponent implements OnInit {
 
     for (let component of this.config.components) {
       const componentRef = viewContainerRef.createComponent<any>(
-        component.type
+        this.getComponent(component.type)
       );
 
       componentRef.instance.component = component;
+    }
+  }
+
+  getComponent(type: string): any {
+    switch (type) {
+      case ComponentEnum.SIMPLE_TABLE.name:
+        return ComponentEnum.SIMPLE_TABLE.type;
+
+      default:
+        return null;
     }
   }
 }

@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CustomComponentDirective } from '../shared/directives/custom-component.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     DynamicRoutingModule,
     MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class DynamicModule {}

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   combineLatest,
-  empty,
   expand,
   map,
   Observable,
@@ -57,8 +56,6 @@ export class Service<T extends Entity> implements IService<T> {
   }
 
   public load(reload: boolean = false, path: string = ''): void {
-    console.log(this._isLoading);
-
     if (reload || (!(this.entities.length > 0) && !this._isLoading)) {
       this._isLoading = true;
 
@@ -107,6 +104,8 @@ export class Service<T extends Entity> implements IService<T> {
     return this.http.get<Response<T>>(`${url}`);
   }
 
+  // TODO: Make it more flexible
+  // TODO: of scalable solution with Params / QueryParams & More
   private getWithParams(page: number = 1): Observable<Response<T>> {
     return this.http.get<Response<T>>(`${this.url}?page=${page}`);
   }

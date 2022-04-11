@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
 
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,11 +20,13 @@ import { StoreModule } from '@ngrx/store';
 import { LearnModule } from './learn/learn.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DynamicModule } from './dynamic/dynamic.module';
-import { BasicModule } from './shared/module/basic.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent],
@@ -33,13 +34,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CommonModule,
+    FlexLayoutModule,
     SharedModule,
     ComponentsModule,
     LearnModule,
     DynamicModule,
     FormsModule,
     MatInputModule,
-    BasicModule,
     MatDividerModule,
     ReactiveFormsModule,
     MatFormFieldModule,

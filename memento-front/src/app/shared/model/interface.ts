@@ -43,6 +43,7 @@ export interface IService<T extends Entity> {
   entities$: Observable<T[]>;
   filteredEntities$: Observable<T[]>;
   selectedEntity$: Observable<T | undefined>;
+  isLoading$: Observable<boolean>;
 
   load(reload?: boolean, path?: string): void;
   loadPaginated(reload: boolean, firstPage: number): void;
@@ -56,6 +57,16 @@ export interface IService<T extends Entity> {
  */
 export interface Entity {
   id: string;
+}
+
+export enum EntityType {
+  ADD = 'ADD',
+  BOOLEAN = 'BOOLEAN',
+  DATE = 'DATE',
+  DELETE = 'DELETE',
+  EDIT = 'EDIT',
+  NUMBER = 'NUMBER',
+  TEXT = 'TEXT',
 }
 
 export interface Movie extends Entity {
@@ -76,6 +87,9 @@ export type Planets = Planet[];
  * Config
  */
 export interface Config {
+  cols: number;
+  rowh: string;
+  size: string;
   components: TableComponent[];
 }
 
@@ -86,23 +100,113 @@ export const ComponentEnum = {
   },
 };
 
-export interface TableComponent {
-  type: any;
+export interface Column {
+  key: string;
+  type: EntityType;
+  format: string;
+}
+
+export type Columns = Column[];
+
+export interface IComponent {
+  type: 'SIMPLE_TABLE';
+  cols: number;
+  rows: number;
+}
+
+export interface TableComponent extends IComponent {
   service: ServiceEnum;
-  columns: string[];
+  columns: Columns;
 }
 
 export const MockConfig: Config = {
+  cols: 4,
+  rowh: '4em',
+  size: '10px',
   components: [
     {
-      type: 'SIMPLE_TABLE',
-      service: ServiceEnum.EXPENDITURE,
-      columns: ['name', 'price', 'createDate'],
-    },
-    {
+      cols: 2,
+      rows: 6,
       type: 'SIMPLE_TABLE',
       service: ServiceEnum.MOVIE,
-      columns: ['name'],
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
+    },
+    {
+      cols: 2,
+      rows: 6,
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.MOVIE,
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
+    },
+    {
+      cols: 2,
+      rows: 6,
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.MOVIE,
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
+    },
+    {
+      cols: 2,
+      rows: 6,
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.MOVIE,
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
+    },
+    {
+      cols: 2,
+      rows: 6,
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.MOVIE,
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
+    },
+    {
+      cols: 2,
+      rows: 6,
+      type: 'SIMPLE_TABLE',
+      service: ServiceEnum.MOVIE,
+      columns: [
+        { key: 'name', type: EntityType.TEXT, format: '' },
+        { key: 'price', type: EntityType.NUMBER, format: '' },
+        { key: 'createDate', type: EntityType.DATE, format: '' },
+        { key: 'add', type: EntityType.ADD, format: '' },
+        { key: 'edit', type: EntityType.EDIT, format: '' },
+        { key: 'delete', type: EntityType.DELETE, format: '' },
+      ],
     },
   ],
 };

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-  onClick(): void {}
+  elements: any[] = [
+    { name: 'A', position: 'left' },
+    { name: 'C', position: 'left' },
+    { name: 'D', position: 'left' },
+    { name: 'F', position: 'left' },
+    { name: 'E', position: 'right' },
+    { name: 'B', position: 'right' },
+    { name: 'G', position: 'right' },
+  ];
 }

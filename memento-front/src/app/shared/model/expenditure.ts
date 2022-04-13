@@ -1,5 +1,7 @@
-export interface Expenditure {
-  id?: string;
+import { Entity } from './interface';
+
+export interface Expenditure extends Entity {
+  id: string;
   name: string;
   category: ExpenditureCategory;
   price: number;

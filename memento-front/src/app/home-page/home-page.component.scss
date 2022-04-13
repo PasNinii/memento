@@ -4,3 +4,19 @@
   margin-top: 10px;
   margin-bottom: 16px;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.left {
+  justify-self: flex-start;
+  align-self: flex-start;
+}
+
+.right {
+  justify-self: flex-end;
+  align-self: flex-end;
+}

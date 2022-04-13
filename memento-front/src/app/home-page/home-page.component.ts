@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+  elements: any[] = [
+    { name: 'A', position: 'left' },
+    { name: 'C', position: 'left' },
+    { name: 'D', position: 'left' },
+    { name: 'F', position: 'left' },
+    { name: 'E', position: 'right' },
+    { name: 'B', position: 'right' },
+    { name: 'G', position: 'right' },
+  ];
+}

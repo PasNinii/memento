@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movies } from '../../../shared/model/interface';
-import { MovieService } from '../../../shared/services/movie.service';
+import { MovieService } from '../../../shared/services/services.service';
 
 @Component({
   template: `
-    <section
-      *ngIf="movies$ | async as movies; else loading"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-    >
+    <section *ngIf="movies$ | async as movies; else loading" fxLayout="column" fxLayoutAlign="center center">
       <div>
         <ul>
           <li *ngFor="let movie of movies" [routerLink]="['detail', movie.id]">

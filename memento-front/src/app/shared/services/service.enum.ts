@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Entity, IService, ServiceEnum } from '../model/interface';
-import { MovieService } from './movie.service';
-import { SerieService } from './serie.service';
+import {
+  MovieService,
+  SerieService,
+  ExpenditureService,
+} from './services.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +12,8 @@ import { SerieService } from './serie.service';
 export class ServiceFactory {
   constructor(
     private readonly _movies: MovieService,
-    private readonly _series: SerieService
+    private readonly _series: SerieService,
+    private readonly _expenditures: ExpenditureService
   ) {}
 
   public getService(type: ServiceEnum): IService<Entity> {
@@ -19,6 +23,9 @@ export class ServiceFactory {
 
       case ServiceEnum.SERIE:
         return this._series;
+
+      case ServiceEnum.EXPENDITURE:
+        return this._expenditures;
 
       default:
         return this._movies;

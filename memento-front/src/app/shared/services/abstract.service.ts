@@ -54,6 +54,7 @@ export class Service<T extends Entity> implements IService<T> {
         error: (error) => {
           console.log(error);
           this.snacks.log(error?.message, 'error');
+          this._isLoading$.next(false);
         },
       });
     }

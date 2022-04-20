@@ -24,8 +24,7 @@ export const routes: CustomRoute[] = [
   },
   {
     path: 'learn',
-    loadChildren: () =>
-      import('./learn/learn.module').then((m) => m.LearnModule),
+    loadChildren: () => import('./learn/learn.module').then((m) => m.LearnModule),
     canActivate: [AuthGuard],
     name: 'Learn 🧠',
     toolbar: true,
@@ -33,10 +32,17 @@ export const routes: CustomRoute[] = [
   },
   {
     path: 'dynamic',
-    loadChildren: () =>
-      import('./dynamic/dynamic.module').then((m) => m.DynamicModule),
+    loadChildren: () => import('./dynamic/dynamic.module').then((m) => m.DynamicModule),
     canActivate: [AuthGuard],
     name: 'Dynamic 🚀',
+    toolbar: true,
+    sidenav: false,
+  },
+  {
+    path: 'games',
+    loadChildren: () => import('./games/games.module').then((m) => m.GamesModule),
+    canActivate: [AuthGuard],
+    name: 'Games 🎳',
     toolbar: true,
     sidenav: false,
   },

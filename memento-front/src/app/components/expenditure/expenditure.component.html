@@ -1,29 +1,16 @@
-<section
-  class="filter-container"
-  fxLayout="row"
-  fxLayoutAlign="center center"
-  fxLayoutGap="40"
->
+<section class="filter-container" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40">
   <mat-form-field appearance="fill">
     <mat-label>Choose Month</mat-label>
     <mat-select (selectionChange)="onMonthChange($event)">
-      <mat-option *ngFor="let month of months" [value]="month">{{
-        month | titlecase
-      }}</mat-option>
+      <mat-option *ngFor="let month of months" [value]="month">{{ month | titlecase }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Choose Category</mat-label>
-    <mat-select
-      [(ngModel)]="selectedCategory"
-      (selectionChange)="onCategoryChange()"
-    >
-      <mat-option
-        *ngFor="let category of categories$ | async"
-        [value]="category.name"
-        >{{ category.name | titlecase }}</mat-option
-      >
+    <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange()">
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.name">{{ category.name | titlecase }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -33,10 +20,7 @@
 </section>
 
 <div *ngFor="let category of categories$ | async">
-  <app-expenditure-list
-    *ngIf="category.name !== 'All'"
-    [category]="category.name"
+  <app-expenditure-list *ngIf="category.name !== 'All'" [category]="category.name"
     [expenditures$]="getExpenditureByCategory(category.name)"
-    [isExpenditureEmpty$]="isExpenditureCategoryEmpty(category.name)"
-  ></app-expenditure-list>
+    [isExpenditureEmpty$]="isExpenditureCategoryEmpty(category.name)"></app-expenditure-list>
 </div>

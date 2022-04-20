@@ -17,54 +17,7 @@ import { EntityType } from '../../../../shared/model/interface';
 
 @Component({
   selector: 'app-simple-table',
-  template: `
-    <ng-container *ngIf="isLoading$ | async; else table">
-      <mat-spinner></mat-spinner>
-    </ng-container>
-    <ng-template #table>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container [matColumnDef]="column.key" *ngFor="let column of columns">
-          <th mat-header-cell *matHeaderCellDef>{{ column.key | titlecase }}</th>
-          <td mat-cell *matCellDef="let element">
-            <ng-container [ngSwitch]="column.type">
-              <ng-container *ngIf="!element.isEdit; else editRow">
-                <div *ngSwitchCase="types.TEXT">
-                  {{ element[column.key] }}
-                </div>
-                <div *ngSwitchCase="types.EDIT">
-                  <button mat-raised-button (click)="element.isEdit = !element.isEdit">
-                    <mat-icon>edit</mat-icon> Edit
-                  </button>
-                </div>
-              </ng-container>
-              <ng-template #editRow>
-                <div *ngSwitchCase="types.TEXT">
-                  <mat-form-field appearance="fill">
-                    <mat-label>{{ column.key | titlecase }}</mat-label>
-                    <input matInput type="text" [(ngModel)]="element[column.key]" [placeholder]="element[column.key]" />
-                  </mat-form-field>
-                </div>
-                <div *ngSwitchCase="types.EDIT">
-                  <button mat-raised-button (click)="element.isEdit = !element.isEdit">
-                    <mat-icon>done</mat-icon> Done
-                  </button>
-                </div>
-              </ng-template>
-            </ng-container>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="getColumnsName()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getColumnsName()"></tr>
-      </table>
-    </ng-template>
-    <mat-paginator
-      [ngClass]="(isLoading$ | async) ? 'hidden' : ''"
-      [pageSizeOptions]="[5, 10]"
-      showFirstLastButtons
-      aria-label="Select page of periodic elements"
-    >
-    </mat-paginator>
-  `,
+  templateUrl: './simple-table.component.html',
   styleUrls: ['./simple-table.component.scss'],
 })
 export class SimpleTableComponent implements OnInit, AfterViewInit, OnDestroy {

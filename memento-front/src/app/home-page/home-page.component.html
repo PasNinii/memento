@@ -1,12 +1,38 @@
-<section class="container">
-  <ng-container *ngFor="let e of elements">
-    <div *ngIf="e.position === 'left'; else right" class="left">
-      {{ e.name }}
-    </div>
-    <ng-template #right>
-      <div class="right">
-        {{ e.name }}
-      </div>
-    </ng-template>
-  </ng-container>
+<section fxLayout="column" fxLayoutAlign="center center">
+  <h1>You must be lost ❓☣️</h1>
+  <h2>You must be lost ❓☣️</h2>
+  <h3>You must be lost ❓☣️</h3>
+  <h4>You must be lost ❓☣️</h4>
+  <h5>You must be lost ❓☣️</h5>
+  <h6>You must be lost ❓☣️</h6>
 </section>
+
+<div fxLayout="row">
+  <div>
+    <ng-template #A>A</ng-template>
+  </div>
+  <div>
+    <ng-template #B>B</ng-template>
+  </div>
+  <div>
+    <ng-template #C>C</ng-template>
+  </div>
+  <div>
+    <ng-template #D>D</ng-template>
+  </div>
+</div>
+
+<ng-container *ngFor="let entity of (entities$ | async)" [ngSwitch]="entity.category">
+  <ng-container *ngSwitchCase="'A'">
+    <ng-container *ngTemplateOutlet="A"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'B'">
+    <ng-container *ngTemplateOutlet="B"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'C'">
+    <ng-container *ngTemplateOutlet="C"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'D'">
+    <ng-container *ngTemplateOutlet="D"></ng-container>
+  </ng-container>
+</ng-container>

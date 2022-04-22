@@ -3,10 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { map, Observable } from 'rxjs';
 import { MONTHS } from '../../shared/model/date';
-import {
-  Expenditure,
-  ExpenditureCategory,
-} from '../../shared/model/expenditure';
+import { Expenditure, ExpenditureCategory } from '../../shared/model/expenditure';
 import { ExpenditureFilter } from '../../shared/model/expenditure-filter';
 import { ExpenditureCategoryService } from '../../store/services/expenditure-category.service';
 import { ExpenditureService } from '../../store/services/expenditure.service';
@@ -61,17 +58,9 @@ export class ExpenditureComponent implements OnInit {
     const date = new Date();
     date.setMonth(filter - 1);
 
-    const firstDay = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      1
-    ).toISOString();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).toISOString();
 
-    const lastDay = new Date(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      0
-    ).toISOString();
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString();
 
     this.filters.firstDay = firstDay;
     this.filters.lastDay = lastDay;
@@ -91,17 +80,13 @@ export class ExpenditureComponent implements OnInit {
   }
 
   isExpenditureCategoryEmpty(category: string): Observable<boolean> {
-    return this.getExpenditureByCategory(category).pipe(
-      map((expditureList) => expditureList.length > 0)
-    );
+    return this.getExpenditureByCategory(category).pipe(map((expditureList) => expditureList.length > 0));
   }
 
   getExpenditureByCategory(category: string): Observable<Expenditure[]> {
     return this.expenditures$.pipe(
       map((expenditureList) => {
-        return expenditureList.filter(
-          (expenditure) => expenditure.category.name === category
-        );
+        return expenditureList.filter((expenditure) => expenditure.category.name === category);
       })
     );
   }

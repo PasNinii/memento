@@ -22,7 +22,10 @@ import { ComponentsModule } from './components/components.module';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { GamesModule } from './games/games.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ChildComponent } from './learn/angular/child.component';
+import { ParentComponent } from './learn/angular/parent.component';
 import { LearnModule } from './learn/learn.module';
+import { HighlightDirective } from './shared/directives/highlight.directive';
 import { SharedModule } from './shared/shared.module';
 import { defaultDataServiceConfig, entityConfig } from './store/entity-metadata';
 
@@ -32,7 +35,7 @@ const config: SocketIoConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent],
+  declarations: [AppComponent, HomePageComponent, HighlightDirective, ParentComponent, ChildComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

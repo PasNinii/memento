@@ -7,6 +7,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { routes as appRoutes } from '../../app-routing.module';
 import { routes as learnRoutes } from '../../learn/learn-routing.module';
 import { routes as dynamicRoutes } from '../../dynamic/dynamic-routing.module';
+import { routes as gameRoutes } from '../../games/games-routing.module';
 import { CustomRoute } from '../model/interface';
 import { NavigationEnd, Router } from '@angular/router';
 
@@ -16,12 +17,10 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent {
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe([Breakpoints.Handset])
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset]).pipe(
+    map((result) => result.matches),
+    shareReplay()
+  );
 
   readonly appRoutes: CustomRoute[] = appRoutes;
   activeRoute$: Observable<CustomRoute[]>;
@@ -39,6 +38,7 @@ export class ShellComponent {
 
         if (e.url.includes('learn')) return learnRoutes;
         if (e.url.includes('dynamic')) return dynamicRoutes;
+        if (e.url.includes('games')) return gameRoutes;
 
         return appRoutes;
       })

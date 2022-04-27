@@ -1,35 +1,41 @@
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { ComponentsModule } from './components/components.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
-
-import { environment as env } from '../environments/environment';
-import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
-import {
-  defaultDataServiceConfig,
-  entityConfig,
-} from './store/entity-metadata';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { LearnModule } from './learn/learn.module';
-import { HomePageComponent } from './home-page/home-page.component';
-import { DynamicModule } from './dynamic/dynamic.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+
+import { environment as env, environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
+import { DynamicModule } from './dynamic/dynamic.module';
+import { GamesModule } from './games/games.module';
+import { HomePageComponent } from './home-page/home-page.component';
+import { ChildComponent } from './learn/angular/child.component';
+import { ParentComponent } from './learn/angular/parent.component';
+import { LearnModule } from './learn/learn.module';
+import { HighlightDirective } from './shared/directives/highlight.directive';
 import { SharedModule } from './shared/shared.module';
+import { defaultDataServiceConfig, entityConfig } from './store/entity-metadata';
+
+const config: SocketIoConfig = {
+  url: environment.serverUrl,
+  options: {},
+};
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent],
+  declarations: [AppComponent, HomePageComponent, HighlightDirective, ParentComponent, ChildComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,10 +46,13 @@ import { SharedModule } from './shared/shared.module';
     ComponentsModule,
     LearnModule,
     DynamicModule,
+    GamesModule,
     FormsModule,
     MatInputModule,
+    SocketIoModule.forRoot(config),
     MatDividerModule,
     ReactiveFormsModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,

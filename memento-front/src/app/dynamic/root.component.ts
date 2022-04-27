@@ -13,7 +13,7 @@ import { Config, MockConfig } from '../shared/model/interface';
         >
           <ng-container [ngSwitch]="component.type">
             <ng-template ngSwitchCase="SIMPLE_TABLE">
-              <app-simple-table [component]="component"></app-simple-table>
+              <app-simple-table class="component-container" [component]="component"></app-simple-table>
             </ng-template>
           </ng-container>
         </mat-grid-tile>
